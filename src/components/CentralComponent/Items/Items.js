@@ -8,17 +8,6 @@ class Items extends Component {
     let item = null;
 
     switch (this.props.type) {
-      case ('one'):
-        item = <div className={classes.Bottom}></div>;
-        break;
-      case ('two'):
-        item = (
-          <div className={classes.Top}>
-            <div className={classes.Seeds1}></div>
-            <div className={classes.Seeds2}></div>
-          </div>
-        );
-        break;
       case ('three'):
         item = <div className={classes.Item1}></div>;
         break;

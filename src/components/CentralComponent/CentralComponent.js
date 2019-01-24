@@ -4,15 +4,13 @@ import classes from './CentralComponent.module.css';
 import Item from './Items/Items';
 
 const centralComponent = (props) => {
-  let transformedItems = Object.keys(props.items).
-    map(itemKey => {
+  let transformedItems = Object.keys(props.items).map(
+    itemKey => {
       console.log([...Array(props.items[itemKey])])
-      return [...Array(props.items[itemKey])].
-        map((_, i) => {
+      return [...Array(props.items[itemKey])].map((_, i) => {
           return <Item key={itemKey + i} type={itemKey} />
         });
-    })
-    .reduce((arr, el) => {
+    }).reduce((arr, el) => {
       return arr.concat(el)
     }, []);
   if (transformedItems.length === 0) {

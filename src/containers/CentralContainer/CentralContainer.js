@@ -24,32 +24,23 @@ class CentralContainer extends Component {
   }
 
   addItemHandler = (type) => {
-    const oldCount = this.state.items[type];
-    const updatedCounted = oldCount + 1;
     const updatedItems = {
       ...this.state.items
     };
-    updatedItems[type] = updatedCounted
-    const factorAddition = ITEMS_FACTORS[type];
-    const oldFactor = this.state.totalFactors;
-    const newFactor = oldFactor + factorAddition
+    updatedItems[type] = updatedItems[type] + 1
+    const newFactor = this.state.totalFactors + ITEMS_FACTORS[type]
     this.setState({ items: updatedItems, totalFactors: newFactor })
   }
 
   removeItemHandler = (type) => {
-    const oldCount = this.state.items[type];
-    if (oldCount <= 0) {
+    if (this.state.items[type] <= 0) {
       return;
     }
-    const updatedCounted = oldCount - 1;
-    const updatedItems = {
-      ...this.state.items
-    };
-    updatedItems[type] = updatedCounted
-    const factorAddition = ITEMS_FACTORS[type];
-    const oldFactor = this.state.totalFactors;
-    const newFactor = oldFactor - factorAddition
-    this.setState({ items: updatedItems, totalFactors: newFactor })
+    const updatedItems = {...this.state.items};
+    updatedItems[type] = this.state.items[type] - 1
+    this.setState({ 
+      items: updatedItems, 
+      totalFactors: this.state.totalFactors - ITEMS_FACTORS[type]})
 
     // if(this.state.items[type] <= 0) {
     //   return;
@@ -73,6 +64,7 @@ class CentralContainer extends Component {
           itemAdded={this.addItemHandler}
           itemRemoved={this.removeItemHandler}
           disabled={disableInfo}
+          price={this.state.totalFactors}
         />
       </Aux>
     );

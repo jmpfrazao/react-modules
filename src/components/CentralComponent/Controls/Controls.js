@@ -12,11 +12,15 @@ const controlsObjs = [
 
 const controls = (props) => (
   <div className={classes.Controls}>
+    <p>Current Price: {props.price}</p>
     {controlsObjs.map(ctrl => (
       <Control
         key={ctrl.label}
         label={ctrl.label}
-        added={() => props.itemAdded(ctrl.type)} />
+        added={() => props.itemAdded(ctrl.type)}
+        removed={() => props.itemRemoved(ctrl.type)}
+        disabled={props.disabled[ctrl.type]}
+        />
     ))}
   </div>
 );

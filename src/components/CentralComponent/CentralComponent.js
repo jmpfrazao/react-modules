@@ -6,7 +6,6 @@ import Item from './Items/Items';
 const centralComponent = (props) => {
   let transformedItems = Object.keys(props.items).map(
     itemKey => {
-      console.log([...Array(props.items[itemKey])])
       return [...Array(props.items[itemKey])].map((_, i) => {
           return <Item key={itemKey + i} type={itemKey} />
         });
@@ -16,7 +15,6 @@ const centralComponent = (props) => {
   if (transformedItems.length === 0) {
     transformedItems = <p>Please start adding items!</p>
   }
-  console.log(transformedItems)
   return (
     <div className={classes.CentralComponent}>
       <Item type="two" />

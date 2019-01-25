@@ -61,8 +61,13 @@ class CentralContainer extends Component {
     this.updateCheckoutState(updatedItems);
   }
 
-  modalHandler = () => {
-    this.setState({ modal: this.state.modal })
+  modalOpenHandler = () => {
+    console.log(this)
+    this.setState({ modal: true });
+  }
+
+  modalCancelHandler = () => {
+    this.setState({modal: false});
   }
 
   render() {
@@ -75,7 +80,7 @@ class CentralContainer extends Component {
     console.log(disableInfo)
     return (
       <Aux>
-        <Modal show={this.state.modal}>
+        <Modal show={this.state.modal} modalClosed={this.modalCancelHandler}>
           <OrderSummary items={this.state.items} />
         </Modal>
         <CentralComponent items={this.state.items} />
@@ -85,7 +90,7 @@ class CentralContainer extends Component {
           disabled={disableInfo}
           price={this.state.totalFactors}
           checkout={this.state.checkout}
-          modal={this.modalHandler}
+          modal={this.modalOpenHandler}
         />
       </Aux>
     );

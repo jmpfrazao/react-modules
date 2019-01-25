@@ -70,6 +70,10 @@ class CentralContainer extends Component {
     this.setState({modal: false});
   }
 
+  modalContinuedHandler = () => {
+    alert('You continue!');
+  }
+
   render() {
     const disableInfo = {
       ...this.state.items
@@ -81,7 +85,11 @@ class CentralContainer extends Component {
     return (
       <Aux>
         <Modal show={this.state.modal} modalClosed={this.modalCancelHandler}>
-          <OrderSummary items={this.state.items} />
+          <OrderSummary 
+            items={this.state.items}
+            modalCancelled={this.modalCancelHandler}
+            modalContinued={this.modalContinuedHandler}
+             />
         </Modal>
         <CentralComponent items={this.state.items} />
         <Controls

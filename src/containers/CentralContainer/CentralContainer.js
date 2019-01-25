@@ -87,6 +87,7 @@ class CentralContainer extends Component {
         <Modal show={this.state.modal} modalClosed={this.modalCancelHandler}>
           <OrderSummary 
             items={this.state.items}
+            factor={this.state.totalFactors}
             modalCancelled={this.modalCancelHandler}
             modalContinued={this.modalContinuedHandler}
              />
@@ -96,7 +97,7 @@ class CentralContainer extends Component {
           itemAdded={this.addItemHandler}
           itemRemoved={this.removeItemHandler}
           disabled={disableInfo}
-          price={this.state.totalFactors}
+          factor={this.state.totalFactors}
           checkout={this.state.checkout}
           modal={this.modalOpenHandler}
         />

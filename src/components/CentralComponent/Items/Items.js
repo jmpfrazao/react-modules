@@ -9,16 +9,16 @@ class Items extends Component {
 
     switch (this.props.type) {
       case ('three'):
-        item = <div className={classes.Item1}></div>;
-        break;
-      case ('four'):
-        item = <div className={classes.Item2}></div>;
-        break;
-      case ('five'):
         item = <div className={classes.Item3}></div>;
         break;
-      case ('six'):
+      case ('four'):
         item = <div className={classes.Item4}></div>;
+        break;
+      case ('five'):
+        item = <div className={classes.Item5}></div>;
+        break;
+      case ('six'):
+        item = <div className={classes.Item6}></div>;
         break;
       default:
         item = null;

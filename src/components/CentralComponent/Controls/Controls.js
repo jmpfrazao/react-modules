@@ -13,7 +13,10 @@ const controlsObjs = [
 const controls = (props) => (
   <div className={classes.Controls}>
     {controlsObjs.map(ctrl => (
-      <Control key={ctrl.label} label={ctrl.label}/>
+      <Control
+        key={ctrl.label}
+        label={ctrl.label}
+        added={() => props.itemAdded(ctrl.type)} />
     ))}
   </div>
 );

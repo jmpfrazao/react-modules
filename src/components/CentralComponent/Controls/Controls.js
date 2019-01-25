@@ -24,7 +24,7 @@ const controls = (props) => (
     ))}
     <button 
     className={classes.OrderButton}
-    disabled={!props.checkout} >ORDER</button>
+    disabled={!props.checkout} onClick={props.modal}>ORDER</button>
   </div>
 );
 

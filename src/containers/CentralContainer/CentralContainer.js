@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import CentralComponent from '../../components/CentralComponent/CentralComponent';
 import Controls from '../../components/CentralComponent/Controls/Controls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/CentralComponent/OrderSummary/OrderSummary';
 
 const ITEMS_FACTORS = {
   six: 0.5,
@@ -21,7 +23,8 @@ class CentralContainer extends Component {
       three: 0
     },
     totalFactors: 4,
-    checkout: false
+    checkout: false,
+    modal: false
   }
 
 
@@ -58,6 +61,10 @@ class CentralContainer extends Component {
     this.updateCheckoutState(updatedItems);
   }
 
+  modalHandler = () => {
+    this.setState({ modal: this.state.modal })
+  }
+
   render() {
     const disableInfo = {
       ...this.state.items
@@ -68,6 +75,9 @@ class CentralContainer extends Component {
     console.log(disableInfo)
     return (
       <Aux>
+        <Modal show={this.state.modal}>
+          <OrderSummary items={this.state.items} />
+        </Modal>
         <CentralComponent items={this.state.items} />
         <Controls
           itemAdded={this.addItemHandler}
@@ -75,6 +85,7 @@ class CentralContainer extends Component {
           disabled={disableInfo}
           price={this.state.totalFactors}
           checkout={this.state.checkout}
+          modal={this.modalHandler}
         />
       </Aux>
     );

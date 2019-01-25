@@ -20,9 +20,21 @@ class CentralContainer extends Component {
       four: 0,
       three: 0
     },
-    totalFactors: 4
+    totalFactors: 4,
+    checkout: false
   }
 
+
+  updateCheckoutState(items) {
+    const sum = Object.keys(items)
+      .map(itemKey => {
+        return items[itemKey]
+      })
+      .reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({ checkout: sum > 0 });
+  }
   addItemHandler = (type) => {
     const updatedItems = {
       ...this.state.items
@@ -30,25 +42,22 @@ class CentralContainer extends Component {
     updatedItems[type] = updatedItems[type] + 1
     const newFactor = this.state.totalFactors + ITEMS_FACTORS[type]
     this.setState({ items: updatedItems, totalFactors: newFactor })
+    this.updateCheckoutState(updatedItems);
   }
 
   removeItemHandler = (type) => {
     if (this.state.items[type] <= 0) {
       return;
     }
-    const updatedItems = {...this.state.items};
+    const updatedItems = { ...this.state.items };
     updatedItems[type] = this.state.items[type] - 1
-    this.setState({ 
-      items: updatedItems, 
-      totalFactors: this.state.totalFactors - ITEMS_FACTORS[type]})
-
-    // if(this.state.items[type] <= 0) {
-    //   return;
-    // }
-    // this.setState({
-    //   items:this.state.items[type] - 1, 
-    //   totalFactors:this.state.totalFactors -  ITEMS_FACTORS[type]})
+    this.setState({
+      items: updatedItems,
+      totalFactors: this.state.totalFactors - ITEMS_FACTORS[type]
+    })
+    this.updateCheckoutState(updatedItems);
   }
+
   render() {
     const disableInfo = {
       ...this.state.items
@@ -65,6 +74,7 @@ class CentralContainer extends Component {
           itemRemoved={this.removeItemHandler}
           disabled={disableInfo}
           price={this.state.totalFactors}
+          checkout={this.state.checkout}
         />
       </Aux>
     );

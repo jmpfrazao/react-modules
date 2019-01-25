@@ -22,6 +22,9 @@ const controls = (props) => (
         disabled={props.disabled[ctrl.type]}
         />
     ))}
+    <button 
+    className={classes.OrderButton}
+    disabled={!props.checkout} >ORDER</button>
   </div>
 );
 

@@ -17,10 +17,10 @@ class CentralContainer extends Component {
 
   state = {
     items: {
-      six: 0,
-      five: 0,
-      four: 0,
-      three: 0
+      six: 1,
+      five: 1,
+      four: 1,
+      three: 1
     },
     totalFactors: 4,
     checkout: false,
